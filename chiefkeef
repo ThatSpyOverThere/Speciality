@@ -1,0 +1,133 @@
+#Sosa Moderation bot!
+import discord
+from discord.ext import commands
+import time
+
+def check():
+    print("30 min check- bot running well.")
+    time.sleep(1800)
+    check()
+    
+client = commands.Bot(command_prefix = 's.')
+
+@client.event
+async def on_ready():
+    print('Bot is ready.')
+    time.sleep(0.75)
+    print("Bot is still active.")
+    await client.change_presence(activity=discord.Game(name="s.help"))
+
+@client.command()
+async def ping(ctx):
+    await ctx.send(f'Pong! {round(client.latency * 1000)}ms')
+    
+@client.command()
+async def sosa(ctx):
+    await ctx.send('Yo thats me!')
+
+@client.command()
+async def e(ctx):
+    await ctx.send('Why sosa bot you ask? Well I dont know so stop asking questions. Sosa out')
+    
+@client.command()
+@commands.has_role('SOSAMOD')
+async def ban(ctx, member : discord.Member, *, reason=None):
+    await member.ban(reason = reason)
+
+@client.command()
+@commands.has_role('SOSAMOD')
+async def roletest(ctx):
+    await ctx.send('Sosa role test, if you have the role SOSAMOD this will work.')
+
+@client.command()
+async def update(ctx):
+    await ctx.send(" ``Update log 1: Fixed kick command for staff, previously banned users. To fix the issue the user gets banned and unbanned.``   ``Update log 2: Fixed hosting and changed to repl.it, possible hosting change in the future.`` ")
+
+@client.command()
+async def echo(ctx, *args):
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+
+@client.command()
+@commands.has_role('SOSAMOD')
+async def spam(ctx, *args):
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+    time.sleep(0.75)
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+    time.sleep(0.75)
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+    time.sleep(0.75)
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+    time.sleep(0.75)
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+    time.sleep(0.75)
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+    time.sleep(0.75)
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+    time.sleep(0.75)
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+    time.sleep(0.75)
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+    time.sleep(0.75)
+    await ctx.send(' '.join(ctx.message.content.split()[1:]))
+    
+@client.command()
+@commands.has_role('SOSAMOD')
+async def nuke10(ctx, amount=10):
+    await ctx.channel.purge(limit=amount)
+    await ctx.send('get nuked kid')
+    if false:
+        await ctx.send('Im missing the permissions!')
+    
+@client.command()
+@commands.has_role('SOSAMOD')
+async def nuke20(ctx, amount=20):
+    await ctx.channel.purge(limit=amount)
+    await ctx.send('get nuked kid')
+    
+@client.command()
+@commands.has_role('SOSAMOD')
+async def nuke30(ctx, amount=30):
+    await ctx.channel.purge(limit=amount)
+    await ctx.send('get nuked kid')
+    
+@client.command()
+@commands.has_role('SOSAMOD')
+async def nuke40(ctx, amount=40):
+    await ctx.channel.purge(limit=amount)
+    await ctx.send('get nuked kid')
+    
+@client.command()
+async def unban(ctx, *, member):
+	banned_users = await ctx.guild.bans()
+	
+	member_name, member_discriminator = member.split('#')
+	for ban_entry in banned_users:
+		user = ban_entry.user
+		
+		if (user.name, user.discriminator) == (member_name, member_discriminator):
+ 			await ctx.guild.unban(user)
+ 			await ctx.channel.send(f"Unbanned: {user.mention}")
+
+@client.command()
+@commands.has_role('SOSAMOD')
+async def nuke50(ctx, amount=50):
+    await ctx.channel.purge(limit=amount)
+    await ctx.send('get nuked kid')
+    print("nuke50 activated")
+    
+@client.command()
+@commands.has_role('SOSAMOD')
+async def ultranuke(ctx, amount=200):
+    await ctx.channel.purge(limit=amount)
+    await ctx.send('200 messages have been deleted!')
+    print("ultra nuke activated in server.")
+
+@client.command()
+@commands.has_role('SOSAMOD')
+async def kick(ctx, member : discord.Member, *, reason=None):
+    await member.ban(reason=reason)
+    await ctx.guild.unban(user)
+    await ctx.channel.send(f"Kicked: {user.mention}")
+    
+    
+client.run('ODIzMDI2MjI4NTc4NDg0Mjc0.YFa05w.Kg_ZAmdtcwo-gr_tj7oGRIb-RiY')
